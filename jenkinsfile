@@ -1,0 +1,12 @@
+node {
+stage ('scm-checkout') {
+checkout([$class: 'GitSCM', 
+	branches: [[name: '*/master']], 
+	doGenerateSubmoduleConfigurations: false, 
+	extensions: [], submoduleCfg: [], 
+	userRemoteConfigs: [[url: 'https://github.com/pdr11/GaneshSamplerepo.git']]])
+	}
+stage ('build') {
+sh 'mvn clean package'
+}
+}
